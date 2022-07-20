@@ -35,12 +35,15 @@ class Database {
     }
 
     edit(index, name) {
-
         if (name.trim() === '') {
-            alert('Không được để trống')
+            modal.style.display = 'block'
+            document.querySelector('#alert').innerHTML = 'Không được để trống!'
+            document.querySelector('#saveChange').style.display = 'none'
             return
         } else if (this.check(name)) {
-            alert('Thể loại nhạc đã tồn tại')
+            modal.style.display = 'block'
+            document.querySelector('#alert').innerHTML = 'Thể loại nhạc đã tồn tại!'
+            document.querySelector('#saveChange').style.display = 'none'
             return
         }
         this.categoryList[index].name = name
@@ -50,7 +53,6 @@ class Database {
     delete(index) {
         this.categoryList.splice(index, 1)
         this.show()
-
     }
 
     show() {
@@ -81,9 +83,10 @@ class Database {
                 modal.style.display = 'block'
                 saveChange.onclick = () => {
                     let name = document.querySelector('#edit').value
-                    this.edit(i, name)
                     modal.style.display = 'none'
+                    document.querySelector('#edit').value = ''
                     document.querySelector('#edit').style.display = 'none'
+                    this.edit(i, name)
                 }
 
             }
