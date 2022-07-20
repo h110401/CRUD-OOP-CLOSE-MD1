@@ -12,6 +12,7 @@
 
         body {
             background: #9b9b9b;
+            overflow: hidden;
         }
 
         table, tr, td, th {
@@ -130,7 +131,7 @@
                 <br>
                 <br>
                 <b>Category List:</b><br>
-                <div id="category"></div>
+                <div id="category" style="overflow: scroll; height: 220px; overflow-x: hidden"></div>
             </div>
             <br>
             <div style="border-top: 1px solid dimgray">
@@ -145,7 +146,7 @@
                 </select>
             </div>
         </div>
-        <div style="border-left: 2px solid dimgray; padding-left: 30px">
+        <div style="border-left: 2px solid dimgray; padding-left: 30px; height: 580px; overflow: scroll; overflow-x: hidden">
             <b>Song List:</b><br><br>
             <div id="songList"
                  style="display: inline-block; position: relative">

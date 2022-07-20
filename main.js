@@ -13,11 +13,14 @@ database.showSongList()
 
 document.querySelector("#create").onclick = () => {
     database.add(document.querySelector('#categoryCreate').value)
+    document.querySelector('#categoryCreate').value = ''
 }
 
 document.querySelector('#createSong').onclick = () => {
     let name = document.querySelector('#nameSong').value
     let lyrics = document.querySelector('#lyrics').value
+    document.querySelector('#nameSong').value = ''
+    document.querySelector('#lyrics').value = ''
     database.addSong(name, lyrics)
 }
 

@@ -13,9 +13,7 @@ class Database {
             return
         }
         this.categoryList.push(new Category(name))
-
         this.show()
-
     }
 
     check(name) {
