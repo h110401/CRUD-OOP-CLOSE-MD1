@@ -6,10 +6,20 @@ class Database {
 
     add(name) {
         if (name.trim() === '') {
-            alert('Không được đê trống')
+            document.querySelector('#alert').innerHTML = 'Không được để trống!'
+            document.querySelector('#saveChange').style.display = 'none'
+            modal.style.display = 'block'
+            saveChange.onclick = () => {
+                modal.style.display = 'none'
+            }
             return
         } else if (this.check(name)) {
-            alert('Thể loại nhạc đã tồn tại')
+            document.querySelector('#alert').innerHTML = 'Thể loại nhạc đã tồn tại'
+            document.querySelector('#saveChange').style.display = 'none'
+            modal.style.display = 'block'
+            saveChange.onclick = () => {
+                modal.style.display = 'none'
+            }
             return
         }
         this.categoryList.push(new Category(name))
@@ -24,8 +34,8 @@ class Database {
         return check
     }
 
-    edit(index) {
-        let name = prompt('Category: ', this.categoryList[index].name)
+    edit(index, name) {
+
         if (name.trim() === '') {
             alert('Không được để trống')
             return
@@ -66,7 +76,16 @@ class Database {
             let editBtn = document.createElement('button')
             editBtn.innerHTML = 'Edit'
             editBtn.onclick = () => {
-                this.edit(i)
+                document.querySelector('#alert').innerHTML = 'Nhập tên để sửa'
+                document.querySelector('#edit').style.display = 'block'
+                modal.style.display = 'block'
+                saveChange.onclick = () => {
+                    let name = document.querySelector('#edit').value
+                    this.edit(i, name)
+                    modal.style.display = 'none'
+                    document.querySelector('#edit').style.display = 'none'
+                }
+
             }
             let tdEdit = document.createElement('td')
             tdEdit.append(editBtn)
@@ -75,6 +94,8 @@ class Database {
             let deleteBtn = document.createElement('button')
             deleteBtn.innerHTML = 'Delete'
             deleteBtn.onclick = () => {
+                document.querySelector('#alert').innerHTML = 'Bạn có chắc chắn xoá ?'
+                document.querySelector('#saveChange').style.display = 'block'
                 modal.style.display = 'block'
                 saveChange.onclick = () => {
                     this.delete(i)
@@ -96,7 +117,12 @@ class Database {
 
     addSong(nameSong, lyrics) {
         if (nameSong.trim() === '' || lyrics.trim() === '') {
-            alert('Không được để trống')
+            document.querySelector('#alert').innerHTML = 'Không được để trống!'
+            document.querySelector('#saveChange').style.display = 'none'
+            modal.style.display = 'block'
+            saveChange.onclick = () => {
+                modal.style.display = 'none'
+            }
             return
         }
         let cate = this.categoryList.find(cate => cate.name === document.querySelector('select').value)
@@ -134,6 +160,8 @@ class Database {
             let deleteBtn = document.createElement('button')
             deleteBtn.innerHTML = 'Delete'
             deleteBtn.onclick = () => {
+                document.querySelector('#alert').innerHTML = 'Bạn có chắc chắn xoá ?'
+                document.querySelector('#saveChange').style.display = 'block'
                 modal.style.display = 'block'
                 saveChange.onclick = () => {
                     this.deleteSong(i)

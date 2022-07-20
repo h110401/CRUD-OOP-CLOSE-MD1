@@ -33,8 +33,10 @@ let saveChange = document.querySelector('#saveChange')
 
 close.onclick = () => {
     modal.style.display = 'none'
+    document.querySelector('#edit').style.display = 'none'
 }
 
 closeBtn.onclick = () => {
     modal.style.display = 'none'
+    document.querySelector('#edit').style.display = 'none'
 }

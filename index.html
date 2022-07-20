@@ -5,12 +5,10 @@
     <title>CRUD-OOP</title>
 
     <style>
-        * {
+        body {
             font-family: Arial;
             user-select: none;
-        }
-
-        body {
+            color: darkslategray;
             background: #9b9b9b;
             overflow: hidden;
         }
@@ -70,7 +68,8 @@
         }
 
         select {
-            padding: 9px;
+            padding: 8px;
+            border-radius: 5px;
         }
 
         b {
@@ -173,11 +172,12 @@
                     &times;
                 </button>
             </div>
-            <div style="text-align: center">
-                <b>Bạn có chắc chắn xoá ?</b>
+            <div style="display: flex; flex-direction: column; align-items: center">
+                <b id="alert"></b><br>
+                <input id="edit" style="width: 300px; height: 20px; display: none">
             </div>
             <div style="position: absolute; bottom: 0; right: 0;left: 0">
-                <button id="saveChange" style="float: right; margin: 10px 10px 10px 0">Save Change</button>
+                <button id="saveChange" style="float: right; margin: 10px 10px 10px 0">Yes</button>
                 <button id="closeBtn" style="float: right; margin: 10px">Close</button>
             </div>
         </div>
