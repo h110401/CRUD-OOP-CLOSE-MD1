@@ -1,17 +1,16 @@
 class Category {
-    constructor(id, name) {
-        this.id = id
+    constructor(name) {
+        // this.id = id
         this.name = name
-        this.songList = []
     }
 
-    getId() {
-        return this.id
-    }
-
-    setId(id) {
-        this.id = id
-    }
+    // getId() {
+    //     return this.id
+    // }
+    //
+    // setId(id) {
+    //     this.id = id
+    // }
 
     getName() {
         return this.name
@@ -19,9 +18,5 @@ class Category {
 
     setName(name) {
         this.name = name
-    }
-
-    add(Song) {
-        this.songList.push(Song)
     }
 }

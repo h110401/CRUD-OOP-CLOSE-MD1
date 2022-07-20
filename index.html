@@ -12,13 +12,34 @@
 
 </head>
 <body>
-
 <div>
-    Thêm danh sách <input type="text" id="categoryCreate">
+    <input type="text" id="categoryCreate" placeholder="Thêm danh sách">
     <button>Thêm</button>
+    <br>
+    <br>
+    <div id="category"></div>
 </div>
+<br>
+<div>
+    Name Song:<br>
+    <input id="nameSong" type="text"><br>
+    Lyrics<br>
+    <textarea id="lyrics" style="width: 200px; height: 100px;"></textarea>
 
-<div id="category"></div>
+    <br>
+    <br>
+    <button id="createSong">Create song</button>
+    <select id="selectCategory">
+    </select>
+</div>
+<div id="songList"
+     style="
+     position: absolute;
+     top: 8px;
+     left: 260px;
+     display: inline-block;
+">
+</div>
 
 
 <script src="Database.js"></script>

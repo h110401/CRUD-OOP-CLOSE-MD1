@@ -1,16 +1,17 @@
 class Database {
-    constructor(id) {
-        this.id = id
+    constructor() {
         this.categoryList = []
+        this.songList = []
     }
 
     add(name) {
         if (name.trim() === '') {
             alert('Không được đê trống')
         } else {
-            this.categoryList.push(new Category(this.categoryList.length + 1, name))
-            this.show()
+            this.categoryList.push(new Category(name))
         }
+        this.show()
+
     }
 
     edit(index) {
@@ -20,45 +21,106 @@ class Database {
         } else {
             this.categoryList[index].name = name
         }
-
         this.show()
     }
 
     delete(index) {
         this.categoryList.splice(index, 1)
         this.show()
+
     }
 
     show() {
-        let div = document.querySelector(this.id)
+        let div = document.querySelector('#category')
+        let select = document.querySelector('#selectCategory')
         div.replaceChildren()
+        select.replaceChildren()
+
         let table = document.createElement('table')
+
+        table.innerHTML = '<tr><td>ID</td><td>Name</td><td>Edit</td><td>Delete</td></tr>'
+
         this.categoryList.forEach((category, i) => {
             let tr = document.createElement('tr')
-            for (const categoryKey in category) {
-                if (categoryKey !== 'songList') {
-                    let td = document.createElement('td')
-                    td.append(category[categoryKey])
-                    tr.append(td)
-                }
-            }
+            let td = document.createElement('td')
+            td.append(i + 1)
+            tr.append(td)
+
+            let tdName = document.createElement('td')
+            tdName.append(category.name)
+            tr.append(tdName)
+
             let editBtn = document.createElement('button')
             editBtn.innerHTML = 'Edit'
             editBtn.onclick = () => {
                 this.edit(i)
             }
-            tr.append(editBtn)
-
+            let tdEdit = document.createElement('td')
+            tdEdit.append(editBtn)
+            tr.append(tdEdit)
 
             let deleteBtn = document.createElement('button')
             deleteBtn.innerHTML = 'Delete'
             deleteBtn.onclick = () => {
                 this.delete(i)
             }
+            let tdDelete = document.createElement('td')
+            tdDelete.append(deleteBtn)
+            tr.append(tdDelete)
 
-            tr.append(deleteBtn)
             table.append(tr)
             div.append(table)
+
+            let opt = document.createElement('option')
+            opt.innerHTML = category.name
+            select.append(opt)
         })
     }
+
+    addSong(nameSong, lyrics) {
+        let cate = this.categoryList.find(cate => cate.name === document.querySelector('select').value)
+        this.songList.push(new Song(nameSong, lyrics, cate.name))
+        this.showSongList()
+    }
+
+    deleteSong(index) {
+        this.songList.splice(index, 1)
+        this.showSongList()
+    }
+
+    showSongList() {
+        let div = document.querySelector('#songList')
+        div.replaceChildren()
+
+        let table = document.createElement('table')
+
+        table.innerHTML = '<tr><td>ID</td><td>Name</td><td>Category</td><td>Delete</td></tr>'
+
+        this.songList.forEach((song, i) => {
+            let tr = document.createElement('tr')
+            let td = document.createElement('td')
+            td.append(i + 1)
+            tr.append(td)
+
+            let tdName = document.createElement('td')
+            tdName.append(song.name)
+            tr.append(tdName)
+
+            let tdCate = document.createElement('td')
+            tdCate.append(song.category)
+            tr.append(tdCate)
+
+            let tdDelete = document.createElement('button')
+            tdDelete.innerHTML = 'Delete'
+            tdDelete.onclick = () => {
+                this.deleteSong(i)
+            }
+            tr.append(tdDelete)
+
+            table.append(tr)
+        })
+
+        div.append(table)
+    }
+
 }
