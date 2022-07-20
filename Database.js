@@ -1,7 +1,7 @@
 class Database {
     constructor() {
         this.categoryList = []
-        this.songList = []
+        this.songList = [new Song('A song', 'A B C D E', 'Nhạc Rock')]
     }
 
     add(name) {
@@ -13,6 +13,7 @@ class Database {
             return
         }
         this.categoryList.push(new Category(name))
+
         this.show()
 
     }
@@ -29,6 +30,9 @@ class Database {
         let name = prompt('Category: ', this.categoryList[index].name)
         if (name.trim() === '') {
             alert('Không được để trống')
+            return
+        } else if (this.check(name)) {
+            alert('Thể loại nhạc đã tồn tại')
             return
         }
         this.categoryList[index].name = name
@@ -49,7 +53,7 @@ class Database {
 
         let table = document.createElement('table')
 
-        table.innerHTML = '<tr><td>ID</td><td>Name</td><td>Edit</td><td>Delete</td></tr>'
+        table.innerHTML = '<th>ID</th><th>Name</th><th>Edit</th><th>Delete</th>'
 
         this.categoryList.forEach((category, i) => {
             let tr = document.createElement('tr')
@@ -73,7 +77,11 @@ class Database {
             let deleteBtn = document.createElement('button')
             deleteBtn.innerHTML = 'Delete'
             deleteBtn.onclick = () => {
-                this.delete(i)
+                modal.style.display = 'block'
+                saveChange.onclick = () => {
+                    this.delete(i)
+                    modal.style.display = 'none'
+                }
             }
             let tdDelete = document.createElement('td')
             tdDelete.append(deleteBtn)
@@ -109,7 +117,7 @@ class Database {
 
         let table = document.createElement('table')
 
-        table.innerHTML = '<tr><td>ID</td><td>Name</td><td>Category</td><td>Delete</td></tr>'
+        table.innerHTML = '<th>ID</th><th>Name</th><th>Category</th><th>Delete</th>'
 
         this.songList.forEach((song, i) => {
             let tr = document.createElement('tr')
@@ -128,7 +136,11 @@ class Database {
             let deleteBtn = document.createElement('button')
             deleteBtn.innerHTML = 'Delete'
             deleteBtn.onclick = () => {
-                this.deleteSong(i)
+                modal.style.display = 'block'
+                saveChange.onclick = () => {
+                    this.deleteSong(i)
+                    modal.style.display = 'none'
+                }
             }
             let tdDelete = document.createElement('td')
             tdDelete.append(deleteBtn)
@@ -139,5 +151,6 @@ class Database {
 
         div.append(table)
     }
+
 
 }
