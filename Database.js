@@ -7,11 +7,22 @@ class Database {
     add(name) {
         if (name.trim() === '') {
             alert('Không được đê trống')
-        } else {
-            this.categoryList.push(new Category(name))
+            return
+        } else if (this.check(name)) {
+            alert('Thể loại nhạc đã tồn tại')
+            return
         }
+        this.categoryList.push(new Category(name))
         this.show()
 
+    }
+
+    check(name) {
+        let check = false
+        this.categoryList.forEach(cate => {
+            if (cate.name.toLowerCase() === name.trim().toLowerCase()) check = true
+        })
+        return check
     }
 
     edit(index) {
