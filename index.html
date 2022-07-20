@@ -10,6 +10,10 @@
             user-select: none;
         }
 
+        body {
+            background: #9b9b9b;
+        }
+
         table, tr, td, th {
             border: 1px solid dimgray;
             border-collapse: collapse;
@@ -116,42 +120,42 @@
 </head>
 <body>
 
-
-<div style="display:inline-flex; gap: 40px; border: 1px solid dimgray; padding: 20px">
-    <div>
+<div style="display: flex;justify-content: center">
+    <div style="display:inline-flex; gap: 30px; border: 2px solid dimgray; padding: 20px; border-radius: 15px; background: white">
         <div>
-            <b>Thêm danh sách</b><br>
-            <input type="text" id="categoryCreate">
-            <button id="create">Thêm</button>
+            <div>
+                <b>Thêm danh sách</b><br>
+                <input type="text" id="categoryCreate">
+                <button id="create">Thêm</button>
+                <br>
+                <br>
+                <b>Category List:</b><br>
+                <div id="category"></div>
+            </div>
             <br>
-            <br>
-            <b>Category List:</b><br>
-            <div id="category"></div>
+            <div style="border-top: 1px solid dimgray">
+                <br>
+                <b>Name Song:</b><br>
+                <input id="nameSong" type="text"><br><br>
+                <b>Lyrics:</b><br>
+                <textarea id="lyrics"></textarea>
+                <br><br>
+                <button id="createSong">Create song</button>
+                <select id="selectCategory">
+                </select>
+            </div>
         </div>
-        <br>
-        <div style="border-top: 1px solid dimgray">
-            <br>
-            <b>Name Song:</b><br>
-            <input id="nameSong" type="text"><br><br>
-            <b>Lyrics:</b><br>
-            <textarea id="lyrics"></textarea>
-            <br><br>
-            <button id="createSong">Create song</button>
-            <select id="selectCategory">
-            </select>
+        <div style="border-left: 2px solid dimgray; padding-left: 30px">
+            <b>Song List:</b><br><br>
+            <div id="songList"
+                 style="display: inline-block; position: relative">
+            </div>
         </div>
-    </div>
-    <div style="border-left: 1px solid dimgray; padding-left: 30px">
-        <b>Song List:</b><br><br>
-        <div id="songList"
-             style="display: inline-block; position: relative">
-        </div>
+
     </div>
 
-</div>
-
-<div id="modal">
-    <div style="
+    <div id="modal">
+        <div style="
          background: white;
          border: 1px solid dimgray;
          border-radius: 15px;
@@ -162,18 +166,19 @@
          display: grid;
          grid-template-rows: 30% auto 30%;
          ">
-        <div>
-            <button id="close"
-                    style="float: right; position: absolute; top:10px;right: 10px; width: 20px;height: 20px; padding: 0">
-                &times;
-            </button>
-        </div>
-        <div style="text-align: center">
-            <b>Bạn có chắc chắn xoá ?</b>
-        </div>
-        <div style="position: absolute; bottom: 0; right: 0;left: 0">
-            <button id="saveChange" style="float: right; margin: 10px 10px 10px 0">Save Change</button>
-            <button id="closeBtn" style="float: right; margin: 10px">Close</button>
+            <div>
+                <button id="close"
+                        style="float: right; position: absolute; top:10px;right: 10px; width: 20px;height: 20px; padding: 0">
+                    &times;
+                </button>
+            </div>
+            <div style="text-align: center">
+                <b>Bạn có chắc chắn xoá ?</b>
+            </div>
+            <div style="position: absolute; bottom: 0; right: 0;left: 0">
+                <button id="saveChange" style="float: right; margin: 10px 10px 10px 0">Save Change</button>
+                <button id="closeBtn" style="float: right; margin: 10px">Close</button>
+            </div>
         </div>
     </div>
 </div>
