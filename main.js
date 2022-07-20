@@ -1,5 +1,6 @@
 let database = new Database()
 
+
 database.show()
 
 database.add('Nhạc Đỏ')

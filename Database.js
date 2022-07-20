@@ -18,9 +18,9 @@ class Database {
         let name = prompt('Category: ', this.categoryList[index].name)
         if (name.trim() === '') {
             alert('Không được để trống')
-        } else {
-            this.categoryList[index].name = name
+            return
         }
+        this.categoryList[index].name = name
         this.show()
     }
 
@@ -78,6 +78,10 @@ class Database {
     }
 
     addSong(nameSong, lyrics) {
+        if (nameSong.trim() === '' || lyrics.trim() === '') {
+            alert('Không được để trống')
+            return
+        }
         let cate = this.categoryList.find(cate => cate.name === document.querySelector('select').value)
         this.songList.push(new Song(nameSong, lyrics, cate.name))
         this.showSongList()
@@ -110,11 +114,13 @@ class Database {
             tdCate.append(song.category)
             tr.append(tdCate)
 
-            let tdDelete = document.createElement('button')
-            tdDelete.innerHTML = 'Delete'
-            tdDelete.onclick = () => {
+            let deleteBtn = document.createElement('button')
+            deleteBtn.innerHTML = 'Delete'
+            deleteBtn.onclick = () => {
                 this.deleteSong(i)
             }
+            let tdDelete = document.createElement('td')
+            tdDelete.append(deleteBtn)
             tr.append(tdDelete)
 
             table.append(tr)
